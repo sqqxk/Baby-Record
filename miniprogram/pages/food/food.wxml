@@ -1,0 +1,68 @@
+<view class="container">
+  <view class="card">
+    <view class="tit">🍼 今日概况</view>
+    <view class="info">辅食：{{todayFood}} 次</view>
+    <view class="info">成长：{{todayGrowth}} 次</view>
+  </view>
+  <view class="container">
+  <view class="card">
+    <view class="tit">➕ 辅食记录</view>
+
+    <view class="row">
+      <text>宝宝月龄</text>
+      <picker range="{{monthList}}" value="{{monthIdx}}" bindchange="setMonth">
+        <view class="picker">{{monthList[monthIdx]}}</view>
+      </picker>
+    </view>
+
+    <view class="row">
+      <text>辅食种类</text>
+      <picker range="{{foodList}}" value="{{foodIdx}}" bindchange="setFood">
+        <view class="picker">{{foodList[foodIdx]}}</view>
+      </picker>
+    </view>
+
+    <view class="row">
+      <text>食用量</text>
+      <picker range="{{unitList}}" value="{{unitIdx}}" bindchange="setUnit">
+        <view class="picker">{{unitList[unitIdx]}}</view>
+      </picker>
+    </view>
+
+    <view class="row checkbox">
+      <text>过敏标记</text>
+      <switch checked="{{allergy}}" bindchange="setAllergy" />
+    </view>
+
+    <button class="save-btn" bindtap="save">保存记录</button>
+  </view>
+
+  <view class="card">
+    <view class="tit">📅 今日记录</view>
+    <view wx:for="{{todayList}}" wx:key="id" class="item">
+      <view>{{item.time}} • {{item.food}} {{item.unit}}</view>
+      <text wx:if="{{item.allergy}}" class="tag">过敏</text>
+    </view>
+  </view>
+</view>
+  <view class="btn-box">
+    <button class="btn green" bindtap="goFood">➕ 记录辅食</button>
+    <button class="btn blue" bindtap="goGrowth">📏 记录成长</button>
+  </view>
+
+  <view class="card">
+    <view class="tit">最近辅食</view>
+    <view wx:for="{{foodList}}" wx:key="id" class="item">
+      {{item.time}} • {{item.food}} {{item.unit}}
+    </view>
+    <view wx:if="{{foodList.length===0}}" class="empty">暂无记录</view>
+  </view>
+
+  <view class="card">
+    <view class="tit">最近成长</view>
+    <view wx:for="{{growthList}}" wx:key="id" class="item">
+      {{item.date}} • {{item.height}}cm • {{item.weight}}kg
+    </view>
+    <view wx:if="{{growthList.length===0}}" class="empty">暂无记录</view>
+  </view>
+</view>

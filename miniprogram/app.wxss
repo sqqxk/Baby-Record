@@ -1,0 +1,24 @@
+/**app.wxss**/
+/* .container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}  */
+/* 全局默认背景色 - 首选柔雾奶绿白 */
+page {
+  background-color: #F9FBF8;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+/* 卡片统一样式 */
+.card {
+  background-color: #f77c7c;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  margin-bottom: 24rpx;
+}

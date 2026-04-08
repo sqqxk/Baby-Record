@@ -1,0 +1,92 @@
+<!-- 全局容器 -->
+<view class="container">
+  <!-- 1. 多宝宝管理模块 -->
+  <view class="card baby-card">
+    <view class="card-header">
+      <text class="title">👶 宝宝管理</text>
+      <button class="add-btn" bindtap="addBaby">+ 添加宝宝</button>
+    </view>
+
+    <!-- 宝宝列表（多宝宝切换） -->
+    <scroll-view class="baby-scroll" scroll-x="true">
+      <view 
+        wx:for="{{babyList}}" 
+        wx:key="id"
+        class="baby-item {{currentBabyId === item.id ? 'active' : ''}}"
+        bindtap="switchBaby"
+        data-id="{{item.id}}"
+      >
+        <view class="baby-avatar">{{item.avatar}}</view>
+        <view class="baby-name">{{item.name}}</view>
+        <view class="baby-month">{{item.month}}月龄</view>
+      </view>
+    </scroll-view>
+
+    <!-- 当前宝宝信息 -->
+    <view wx:if="{{currentBaby}}" class="current-info">
+      <text>当前：{{currentBaby.name}} · {{currentBaby.month}}月龄</text>
+      <button class="edit-btn" bindtap="editBaby">编辑</button>
+    </view>
+  </view>
+
+  <!-- 2. 会员中心模块 -->
+  <view class="card vip-card" bindtap="goVip">
+    <view class="vip-left">
+      <view class="vip-icon">🎖️</view>
+      <view>
+        <text class="vip-title">会员中心</text>
+        <text class="vip-desc">{{vipInfo.status}}</text>
+      </view>
+    </view>
+    <view class="vip-right">
+      <text class="vip-tag">{{vipInfo.tag}}</text>
+      <text class="arrow">></text>
+    </view>
+  </view>
+
+  <!-- 3. 核心功能菜单 -->
+  <view class="card menu-card">
+    <view class="menu-item" bindtap="goOrder">
+      <view class="menu-icon">📋</view>
+      <text>订单管理</text>
+      <text class="arrow">></text>
+    </view>
+    <view class="menu-item" bindtap="goCollect">
+      <view class="menu-icon">⭐</view>
+      <text>我的收藏</text>
+      <text class="arrow">></text>
+    </view>
+    <view class="menu-item" bindtap="goNote">
+      <view class="menu-icon">📝</view>
+      <text>育儿笔记</text>
+      <text class="arrow">></text>
+    </view>
+    <view class="menu-item" bindtap="exportRecord">
+      <view class="menu-icon">📤</view>
+      <text>导出记录</text>
+      <text class="arrow">></text>
+    </view>
+  </view>
+
+  <!-- 4. 设置/帮助/客服 -->
+  <view class="card setting-card">
+    <view class="menu-item" bindtap="goSetting">
+      <view class="menu-icon">⚙️</view>
+      <text>通用设置</text>
+      <text class="arrow">></text>
+    </view>
+    <view class="menu-item" bindtap="goHelp">
+      <view class="menu-icon">❓</view>
+      <text>使用帮助</text>
+      <text class="arrow">></text>
+    </view>
+    <view class="menu-item" bindtap="contactService">
+      <view class="menu-icon">💬</view>
+      <text>联系客服</text>
+      <text class="arrow">></text>
+    </view>
+  </view>
+
+  <!-- 版本信息 -->
+  <view class="version">V1.0.0 宝宝辅食成长记</view>
+</view>

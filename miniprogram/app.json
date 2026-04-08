@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/food/food",
+    "pages/growth/growth",
+    "pages/mine/mine"
+  ],
+  "tabBar": {
+    "color": "#888",
+    "selectedColor": "#52c41a",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/food/food",
+        "text": "辅食"
+      },
+      {
+        "pagePath": "pages/growth/growth",
+        "text": "成长"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的"
+      }
+    ]
+  },
+  "window": {
+    "navigationBarTitleText": "宝宝辅食成长记",
+    "navigationBarBackgroundColor": "#52c41a",
+    "navigationBarTextStyle": "white"
+  },
+  "sitemapLocation": "sitemap.json"
+}

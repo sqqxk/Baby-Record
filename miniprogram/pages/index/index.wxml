@@ -1,0 +1,28 @@
+<view class="container">
+  <view class="card">
+    <view class="tit">🍼 今日概况</view>
+    <view class="info">辅食：{{todayFood}} 次</view>
+    <view class="info">成长：{{todayGrowth}} 次</view>
+  </view>
+
+  <view class="btn-box">
+    <button class="btn green" bindtap="goFood">➕ 记录辅食</button>
+    <button class="btn blue" bindtap="goGrowth">📏 记录成长</button>
+  </view>
+
+  <view class="card">
+    <view class="tit">最近辅食</view>
+    <view wx:for="{{foodList}}" wx:key="id" class="item">
+      {{item.time}} • {{item.food}} {{item.unit}}
+    </view>
+    <view wx:if="{{foodList.length===0}}" class="empty">暂无记录</view>
+  </view>
+
+  <view class="card">
+    <view class="tit">最近成长</view>
+    <view wx:for="{{growthList}}" wx:key="id" class="item">
+      {{item.date}} • {{item.height}}cm • {{item.weight}}kg
+    </view>
+    <view wx:if="{{growthList.length===0}}" class="empty">暂无记录</view>
+  </view>
+</view>

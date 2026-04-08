@@ -1,0 +1,25 @@
+<view class="container">
+  <view class="card">
+    <view class="tit">📏 成长记录</view>
+    <view class="row">
+      <text>身高 (cm)</text>
+      <input type="digit" model:value="{{height}}" placeholder="请输入" />
+    </view>
+    <view class="row">
+      <text>体重 (kg)</text>
+      <input type="digit" model:value="{{weight}}" placeholder="请输入" />
+    </view>
+    <view class="row">
+      <text>成长日记</text>
+      <input model:value="{{note}}" placeholder="记录宝宝今天的变化~" />
+    </view>
+    <button class="save-btn" bindtap="save">保存成长记录</button>
+  </view>
+
+  <view class="card">
+    <view class="tit">📜 历史记录</view>
+    <view wx:for="{{list}}" wx:key="id" class="item">
+      {{item.date}}｜{{item.height}}cm / {{item.weight}}kg｜{{item.note}}
+    </view>
+  </view>
+</view>
