@@ -1,28 +1,112 @@
+<!-- 全局容器 -->
 <view class="container">
-  <view class="card">
-    <view class="tit">🍼 今日概况</view>
-    <view class="info">辅食：{{todayFood}} 次</view>
-    <view class="info">成长：{{todayGrowth}} 次</view>
-  </view>
-
-  <view class="btn-box">
-    <button class="btn green" bindtap="goFood">➕ 记录辅食</button>
-    <button class="btn blue" bindtap="goGrowth">📏 记录成长</button>
-  </view>
-
-  <view class="card">
-    <view class="tit">最近辅食</view>
-    <view wx:for="{{foodList}}" wx:key="id" class="item">
-      {{item.time}} • {{item.food}} {{item.unit}}
+  <!-- 1. 顶部宝宝信息栏（修复语法错误 + 本地无图片也能显示） -->
+  <view class="header">
+    <view class="baby-info">
+      <!-- 本地无图片，直接用表情代替，完美显示 -->
+      <view class="avatar">👶</view>
+      <view class="info-text">
+        <text class="name">{{currentBaby.name || '小宝贝'}}</text>
+        <text class="age">{{currentBaby.month || 8}}个月{{currentBaby.day || 12}}天</text>
+      </view>
     </view>
-    <view wx:if="{{foodList.length===0}}" class="empty">暂无记录</view>
+    <view class="bell-icon">🔔</view>
   </view>
 
-  <view class="card">
-    <view class="tit">最近成长</view>
-    <view wx:for="{{growthList}}" wx:key="id" class="item">
-      {{item.date}} • {{item.height}}cm • {{item.weight}}kg
+  <!-- 2. 今日状态模块 -->
+  <view class="status-card">
+    <view class="status-header">
+      <text class="title">今日状态</text>
+      <text class="date">{{todayDate}}</text>
     </view>
-    <view wx:if="{{growthList.length===0}}" class="empty">暂无记录</view>
+    <view class="status-grid">
+      <view class="status-item">
+        <view class="icon">🍼</view>
+        <text class="num">{{todayStatus.milk}}ml</text>
+        <text class="label">奶量</text>
+      </view>
+      <view class="status-item">
+        <view class="icon">🥣</view>
+        <text class="num">{{todayStatus.food}}次</text>
+        <text class="label">辅食</text>
+      </view>
+      <view class="status-item">
+        <view class="icon">😴</view>
+        <text class="num">{{todayStatus.sleep}}h</text>
+        <text class="label">睡眠</text>
+      </view>
+      <view class="status-item">
+        <view class="icon">💩</view>
+        <text class="num">{{todayStatus.poop}}次</text>
+        <text class="label">排便</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 3. 快捷功能按钮 -->
+  <view class="action-grid">
+    <view class="action-item" bindtap="goAddFood">
+      <view class="action-icon">🥄</view>
+      <text class="action-text">添加辅食</text>
+    </view>
+    <view class="action-item" bindtap="goRecordGrow">
+      <view class="action-icon">📏</view>
+      <text class="action-text">记录成长</text>
+    </view>
+    <view class="action-item" bindtap="goWriteDiary">
+      <view class="action-icon">📝</view>
+      <text class="action-text">写日记</text>
+    </view>
+    <view class="action-item" bindtap="goTakePhoto">
+      <view class="action-icon">📷</view>
+      <text class="action-text">拍照片</text>
+    </view>
+  </view>
+
+  <!-- 4. 今日待办模块 -->
+  <view class="todo-section">
+    <view class="todo-header">
+      <text class="title">今日待办</text>
+      <text class="more" bindtap="goTodoList">查看全部 ></text>
+    </view>
+    <view class="todo-list">
+      <view 
+        wx:for="{{todoList}}" 
+        wx:key="id" 
+        class="todo-item {{item.isDone ? 'done' : ''}}"
+        bindtap="toggleTodo"
+        data-id="{{item.id}}"
+      >
+        <view class="checkbox {{item.isDone ? 'checked' : ''}}">
+          {{item.isDone ? '✓' : ''}}
+        </view>
+        <text class="todo-text">{{item.content}}</text>
+      </view>
+      <view class="todo-item vaccine">
+        <view class="checkbox"></view>
+        <text class="todo-text">💡 疫苗提醒：麻腮风疫苗</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 5. 推荐辅食模块 -->
+  <view class="recommend-section">
+    <view class="recommend-header">
+      <text class="title">推荐辅食</text>
+      <text class="more" bindtap="goFoodList">更多 ></text>
+    </view>
+    <scroll-view class="food-scroll" scroll-x="true" show-scrollbar="false">
+      <view 
+        wx:for="{{recommendFood}}" 
+        wx:key="id" 
+        class="food-card"
+        bindtap="goFoodDetail"
+        data-id="{{item.id}}"
+      >
+        <view class="food-icon">{{item.icon}}</view>
+        <text class="food-name">{{item.name}}</text>
+        <view class="age-tag">{{item.age}}</view>
+      </view>
+    </scroll-view>
   </view>
 </view>

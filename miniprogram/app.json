@@ -6,7 +6,7 @@
     "pages/mine/mine"
   ],
   "tabBar": {
-    "color": "#888",
+    "color": "#666666",
     "selectedColor": "#52c41a",
     "borderStyle": "white",
     "backgroundColor": "#fff",
@@ -30,9 +30,9 @@
     ]
   },
   "window": {
-    "navigationBarTitleText": "宝宝辅食成长记",
-    "navigationBarBackgroundColor": "#52c41a",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#FFB6C1"  ,
+    "navigationStyle": "custom"
   },
   "sitemapLocation": "sitemap.json"
 }

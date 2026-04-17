@@ -1,92 +1,110 @@
-<!-- 全局容器 -->
+<!-- 我的页面 -->
 <view class="container">
-  <!-- 1. 多宝宝管理模块 -->
-  <view class="card baby-card">
-    <view class="card-header">
-      <text class="title">👶 宝宝管理</text>
-      <button class="add-btn" bindtap="addBaby">+ 添加宝宝</button>
-    </view>
+  <!-- 1. 顶部标题栏 -->
+  <view class="header">
+    <text class="title">我的</text>
+  </view>
 
-    <!-- 宝宝列表（多宝宝切换） -->
-    <scroll-view class="baby-scroll" scroll-x="true">
-      <view 
-        wx:for="{{babyList}}" 
-        wx:key="id"
-        class="baby-item {{currentBabyId === item.id ? 'active' : ''}}"
-        bindtap="switchBaby"
-        data-id="{{item.id}}"
-      >
-        <view class="baby-avatar">{{item.avatar}}</view>
-        <view class="baby-name">{{item.name}}</view>
-        <view class="baby-month">{{item.month}}月龄</view>
+ <!-- 2. 宝宝信息卡片 -->
+<view class="baby-card">
+  <view class="baby-info">
+    <view class="avatar">👶</view>
+    <view class="info-text">
+      <!-- 修复：分开写text标签，去掉?.，用||兜底空值 -->
+      <text class="name">{{currentBaby.name || '小宝贝'}}</text>
+      <text class="gender-age">
+        {{currentBaby.gender || '男宝'}}·{{currentBaby.month || 8}}个月{{currentBaby.day || 12}}天
+      </text>
+    </view>
+  </view>
+  <view class="edit-btn" bindtap="goEditBaby">编辑</view>
+</view>
+
+  <!-- 3. 功能列表 -->
+  <view class="func-list">
+    <view class="func-item" bindtap="goCollection">
+      <view class="func-icon star">⭐</view>
+      <text class="func-text">我的收藏</text>
+      <view class="arrow">></view>
+    </view>
+    <view class="func-item" bindtap="goBabyNote">
+      <view class="func-icon note">📒</view>
+      <text class="func-text">育儿笔记</text>
+      <view class="arrow">></view>
+    </view>
+    <view class="func-item" bindtap="goExportRecord">
+      <view class="func-icon export">📤</view>
+      <text class="func-text">导出记录</text>
+      <view class="arrow">></view>
+    </view>
+    <view class="func-item" bindtap="goNoticeSetting">
+      <view class="func-icon notice">🔔</view>
+      <text class="func-text">通知设置</text>
+      <view class="arrow">></view>
+    </view>
+    <view class="func-item" bindtap="goPrivacySetting">
+      <view class="func-icon privacy">🔒</view>
+      <text class="func-text">隐私设置</text>
+      <view class="arrow">></view>
+    </view>
+    <view class="func-item" bindtap="goHelpFeedback">
+      <view class="func-icon help">❓</view>
+      <text class="func-text">帮助与反馈</text>
+      <view class="arrow">></view>
+    </view>
+    <view class="func-item" bindtap="goAboutUs">
+      <view class="func-icon about">ℹ️</view>
+      <text class="func-text">关于我们</text>
+      <view class="arrow">></view>
+    </view>
+  </view>
+
+  <!-- 4. 多宝宝管理模块（保留核心功能） -->
+ <!-- 4. 多宝宝管理模块（保留核心功能） -->
+<view class="baby-manage-section">
+  <view class="manage-header">
+    <text class="title">宝宝管理</text>
+    <view class="add-btn" bindtap="goAddBaby">+添加宝宝</view>
+  </view>
+  <!-- 宝宝列表 -->
+  <view class="baby-list">
+    <view 
+      wx:for="{{babyList}}" 
+      wx:key="id" 
+      class="baby-item {{item.id === currentBabyId ? 'active' : ''}}"
+      bindtap="switchBaby"
+      data-id="{{item.id}}"
+    >
+      <view class="baby-avatar">👶</view>
+      <text class="baby-name">{{item.name}}</text>
+      <text class="baby-age">{{item.month}}月龄</text>
+    </view>
+  </view>
+  <!-- 当前选中宝宝（修复语法错误） -->
+  <view class="current-baby">
+    <text class="label">当前：</text>
+    <!-- 关键修复：一个text标签写完整逻辑，去掉?.，兜底默认值 -->
+    <text class="current-name">{{currentBaby.name || '宝宝'}}·{{currentBaby.month || 6}}月龄</text>
+    <view class="edit-manage-btn" bindtap="goEditBaby">编辑</view>
+  </view>
+</view>
+
+  <!-- 5. 育儿工具（占位，保留布局） -->
+  <view class="tools-section">
+    <text class="section-title">育儿工具</text>
+    <view class="tools-grid">
+      <view class="tool-item">
+        <view class="tool-icon">🧮</view>
+        <text class="tool-text">辅食计算器</text>
       </view>
-    </scroll-view>
-
-    <!-- 当前宝宝信息 -->
-    <view wx:if="{{currentBaby}}" class="current-info">
-      <text>当前：{{currentBaby.name}} · {{currentBaby.month}}月龄</text>
-      <button class="edit-btn" bindtap="editBaby">编辑</button>
-    </view>
-  </view>
-
-  <!-- 2. 会员中心模块 -->
-  <view class="card vip-card" bindtap="goVip">
-    <view class="vip-left">
-      <view class="vip-icon">🎖️</view>
-      <view>
-        <text class="vip-title">会员中心</text>
-        <text class="vip-desc">{{vipInfo.status}}</text>
+      <view class="tool-item">
+        <view class="tool-icon">📅</view>
+        <text class="tool-text">疫苗时间表</text>
+      </view>
+      <view class="tool-item">
+        <view class="tool-icon">📝</view>
+        <text class="tool-text">成长曲线</text>
       </view>
     </view>
-    <view class="vip-right">
-      <text class="vip-tag">{{vipInfo.tag}}</text>
-      <text class="arrow">></text>
-    </view>
   </view>
-
-  <!-- 3. 核心功能菜单 -->
-  <view class="card menu-card">
-    <view class="menu-item" bindtap="goOrder">
-      <view class="menu-icon">📋</view>
-      <text>订单管理</text>
-      <text class="arrow">></text>
-    </view>
-    <view class="menu-item" bindtap="goCollect">
-      <view class="menu-icon">⭐</view>
-      <text>我的收藏</text>
-      <text class="arrow">></text>
-    </view>
-    <view class="menu-item" bindtap="goNote">
-      <view class="menu-icon">📝</view>
-      <text>育儿笔记</text>
-      <text class="arrow">></text>
-    </view>
-    <view class="menu-item" bindtap="exportRecord">
-      <view class="menu-icon">📤</view>
-      <text>导出记录</text>
-      <text class="arrow">></text>
-    </view>
-  </view>
-
-  <!-- 4. 设置/帮助/客服 -->
-  <view class="card setting-card">
-    <view class="menu-item" bindtap="goSetting">
-      <view class="menu-icon">⚙️</view>
-      <text>通用设置</text>
-      <text class="arrow">></text>
-    </view>
-    <view class="menu-item" bindtap="goHelp">
-      <view class="menu-icon">❓</view>
-      <text>使用帮助</text>
-      <text class="arrow">></text>
-    </view>
-    <view class="menu-item" bindtap="contactService">
-      <view class="menu-icon">💬</view>
-      <text>联系客服</text>
-      <text class="arrow">></text>
-    </view>
-  </view>
-
-  <!-- 版本信息 -->
-  <view class="version">V1.0.0 宝宝辅食成长记</view>
 </view>

@@ -1,10 +1,149 @@
-.container{padding:20rpx;background:#f7f8fa}
-.card{background:#fff;border-radius:24rpx;padding:30rpx;margin-bottom:24rpx}
-.tit{font-size:32rpx;font-weight:bold;margin-bottom:24rpx}
-.row{margin-bottom:24rpx}
-.row text{display:block;margin-bottom:12rpx;color:#666}
-.picker{border:1rpx solid #eee;border-radius:16rpx;padding:24rpx}
-.checkbox{display:flex;justify-content:space-between;align-items:center}
-.save-btn{background:#52c41a;color:#fff;border-radius:16rpx;padding:24rpx}
-.item{display:flex;justify-content:space-between;align-items:center;padding:16rpx 0;border-bottom:1rpx solid #f2f2f2}
-.tag{background:#fff1f0;color:#ff4d4f;padding:6rpx 12rpx;border-radius:8rpx}
+/* 全局样式 */
+page {
+  background-color: #F9FBF8;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+.container {
+  padding: 0 30rpx;
+  padding-bottom: 120rpx; /* 给底部tabbar留空间 */
+}
+
+/* 1. 顶部标题栏 */
+.header {
+  background: linear-gradient(135deg, #ffb6c1 0%, #ffe4e1 100%);
+  margin: 0 -30rpx;
+  padding: 40rpx 30rpx;
+  border-radius: 0 0 40rpx 40rpx;
+  margin-bottom: 30rpx;
+}
+.header .title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 2. 月龄标签切换 */
+.age-tabs {
+  display: flex;
+  gap: 20rpx;
+  overflow-x: auto;
+  padding-bottom: 10rpx;
+  margin-bottom: 30rpx;
+}
+.age-tabs::-webkit-scrollbar {
+  display: none;
+}
+.tab-item {
+  background: #fff;
+  padding: 16rpx 30rpx;
+  border-radius: 40rpx;
+  white-space: nowrap;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.05);
+}
+.tab-item.active {
+  background: #ff6b81;
+}
+.tab-text {
+  font-size: 28rpx;
+  color: #333;
+}
+.tab-item.active .tab-text {
+  color: #fff;
+}
+
+/* 3. 今日辅食记录 */
+.record-section {
+  margin-bottom: 40rpx;
+}
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  display: block;
+}
+.record-list {
+  background: #fff;
+  border-radius: 24rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
+}
+.record-item {
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  border-bottom: 1rpx solid #f2f2f2;
+}
+.record-item:last-child {
+  border-bottom: none;
+}
+.record-item .time {
+  font-size: 28rpx;
+  color: #999;
+  width: 120rpx;
+}
+.food-info {
+  flex: 1;
+}
+.food-name {
+  font-size: 30rpx;
+  color: #333;
+  display: block;
+  margin-bottom: 8rpx;
+}
+.food-amount {
+  font-size: 26rpx;
+  color: #666;
+}
+.digest-status {
+  font-size: 26rpx;
+  color: #52c41a;
+  background: #f0fff4;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+}
+
+/* 4. 适合月龄的辅食推荐 */
+.recommend-section {
+  margin-bottom: 30rpx;
+}
+.recommend-list {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
+}
+.food-card {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f2f2f2;
+}
+.food-card:last-child {
+  border-bottom: none;
+}
+.food-icon {
+  font-size: 48rpx;
+  margin-right: 20rpx;
+  width: 60rpx;
+  text-align: center;
+}
+.food-detail {
+  flex: 1;
+}
+.food-card .food-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 8rpx;
+}
+.food-desc {
+  font-size: 26rpx;
+  color: #666;
+}
+.food-tag {
+  font-size: 24rpx;
+  color: #fff;
+  background: #ff9a76;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+}

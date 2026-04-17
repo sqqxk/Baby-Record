@@ -1,68 +1,50 @@
+<!-- 辅食记录页面 -->
 <view class="container">
-  <view class="card">
-    <view class="tit">🍼 今日概况</view>
-    <view class="info">辅食：{{todayFood}} 次</view>
-    <view class="info">成长：{{todayGrowth}} 次</view>
-  </view>
-  <view class="container">
-  <view class="card">
-    <view class="tit">➕ 辅食记录</view>
-
-    <view class="row">
-      <text>宝宝月龄</text>
-      <picker range="{{monthList}}" value="{{monthIdx}}" bindchange="setMonth">
-        <view class="picker">{{monthList[monthIdx]}}</view>
-      </picker>
-    </view>
-
-    <view class="row">
-      <text>辅食种类</text>
-      <picker range="{{foodList}}" value="{{foodIdx}}" bindchange="setFood">
-        <view class="picker">{{foodList[foodIdx]}}</view>
-      </picker>
-    </view>
-
-    <view class="row">
-      <text>食用量</text>
-      <picker range="{{unitList}}" value="{{unitIdx}}" bindchange="setUnit">
-        <view class="picker">{{unitList[unitIdx]}}</view>
-      </picker>
-    </view>
-
-    <view class="row checkbox">
-      <text>过敏标记</text>
-      <switch checked="{{allergy}}" bindchange="setAllergy" />
-    </view>
-
-    <button class="save-btn" bindtap="save">保存记录</button>
+  <!-- 1. 顶部标题栏 -->
+  <view class="header">
+    <text class="title">辅食记录</text>
   </view>
 
-  <view class="card">
-    <view class="tit">📅 今日记录</view>
-    <view wx:for="{{todayList}}" wx:key="id" class="item">
-      <view>{{item.time}} • {{item.food}} {{item.unit}}</view>
-      <text wx:if="{{item.allergy}}" class="tag">过敏</text>
+  <!-- 2. 月龄标签切换 -->
+  <view class="age-tabs">
+    <view 
+      wx:for="{{ageTabs}}" 
+      wx:key="id" 
+      class="tab-item {{currentTab === item.id ? 'active' : ''}}"
+      bindtap="switchTab"
+      data-id="{{item.id}}"
+    >
+      <text class="tab-text">{{item.name}}</text>
     </view>
-  </view>
-</view>
-  <view class="btn-box">
-    <button class="btn green" bindtap="goFood">➕ 记录辅食</button>
-    <button class="btn blue" bindtap="goGrowth">📏 记录成长</button>
   </view>
 
-  <view class="card">
-    <view class="tit">最近辅食</view>
-    <view wx:for="{{foodList}}" wx:key="id" class="item">
-      {{item.time}} • {{item.food}} {{item.unit}}
+  <!-- 3. 今日辅食记录 -->
+  <view class="record-section">
+    <text class="section-title">今日辅食记录</text>
+    <view class="record-list">
+      <view wx:for="{{todayRecord}}" wx:key="id" class="record-item">
+        <view class="time">{{item.time}}</view>
+        <view class="food-info">
+          <text class="food-name">{{item.name}}</text>
+          <text class="food-amount">{{item.amount}}</text>
+        </view>
+        <view class="digest-status">{{item.digest}}</view>
+      </view>
     </view>
-    <view wx:if="{{foodList.length===0}}" class="empty">暂无记录</view>
   </view>
 
-  <view class="card">
-    <view class="tit">最近成长</view>
-    <view wx:for="{{growthList}}" wx:key="id" class="item">
-      {{item.date}} • {{item.height}}cm • {{item.weight}}kg
+  <!-- 4. 适合月龄的辅食推荐 -->
+  <view class="recommend-section">
+    <text class="section-title">适合{{currentAge}}月龄的辅食</text>
+    <view class="recommend-list">
+      <view wx:for="{{recommendFood}}" wx:key="id" class="food-card">
+        <view class="food-icon">{{item.icon}}</view>
+        <view class="food-detail">
+          <text class="food-name">{{item.name}}</text>
+          <text class="food-desc">{{item.desc}}</text>
+        </view>
+        <view class="food-tag">{{item.tag}}</view>
+      </view>
     </view>
-    <view wx:if="{{growthList.length===0}}" class="empty">暂无记录</view>
   </view>
 </view>

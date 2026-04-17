@@ -1,10 +1,238 @@
-.container{padding:20rpx;background:#f7f8fa;min-height:100vh}
-.card{background:#fff;border-radius:24rpx;padding:30rpx;margin-bottom:24rpx}
-.tit{font-size:32rpx;font-weight:bold;margin-bottom:20rpx}
-.info{color:#666;margin:8rpx 0;font-size:28rpx}
-.btn-box{display:flex;gap:20rpx;margin:20rpx 0}
-.btn{flex:1;padding:24rpx;border-radius:16rpx;color:#fff;font-size:28rpx}
-.green{background:#52c41a}
-.blue{background:#409eff}
-.item{padding:16rpx 0;border-bottom:1rpx solid #f2f2f2}
-.empty{color:#999;padding:20rpx 0}
+/* 全局样式 */
+page {
+  background-color: #F9FBF8;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+.container {
+  padding: 0 30rpx;
+  padding-bottom: 120rpx;
+}
+
+/* 顶部宝宝信息栏 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40rpx 0;
+  background: linear-gradient(135deg, #ffb6c1 0%, #ffe4e1 100%);
+  margin: 0 -30rpx;
+  padding: 60rpx 30rpx 40rpx;
+  border-radius: 0 0 40rpx 40rpx;
+}
+.baby-info {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+/* 修复：用表情作为头像，本地无图片也正常显示 */
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: #fff;
+  font-size: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.info-text .name {
+  display: block;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+.info-text .age {
+  display: block;
+  font-size: 28rpx;
+  color: #666;
+  margin-top: 8rpx;
+}
+.bell-icon {
+  font-size: 36rpx;
+  color: #ff6b81;
+}
+
+/* 今日状态模块 */
+.status-card {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  margin: 20rpx 0;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
+}
+.status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+.status-header .title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+.status-header .date {
+  font-size: 28rpx;
+  color: #999;
+}
+.status-grid {
+  display: flex;
+  justify-content: space-between;
+}
+.status-item {
+  text-align: center;
+  width: 22%;
+}
+.status-item .icon {
+  font-size: 40rpx;
+  margin-bottom: 12rpx;
+}
+.status-item .num {
+  display: block;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+.status-item .label {
+  font-size: 26rpx;
+  color: #666;
+}
+
+/* 快捷功能按钮 */
+.action-grid {
+  display: flex;
+  justify-content: space-between;
+  margin: 30rpx 0;
+}
+.action-item {
+  background: #fff;
+  border-radius: 20rpx;
+  width: 22%;
+  padding: 30rpx 10rpx;
+  text-align: center;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
+}
+.action-icon {
+  font-size: 40rpx;
+  margin-bottom: 16rpx;
+}
+.action-text {
+  font-size: 26rpx;
+  color: #333;
+}
+
+/* 今日待办模块 */
+.todo-section {
+  margin: 30rpx 0;
+}
+.todo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.todo-header .title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+.todo-header .more {
+  font-size: 28rpx;
+  color: #ff6b81;
+}
+.todo-list {
+  background: #fff;
+  border-radius: 24rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
+}
+.todo-item {
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  border-bottom: 1rpx solid #f2f2f2;
+}
+.todo-item:last-child {
+  border-bottom: none;
+}
+.todo-item.vaccine {
+  background: #fff8e6;
+}
+.checkbox {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  border: 2rpx solid #ccc;
+  margin-right: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  color: #fff;
+}
+.checkbox.checked {
+  background: #52c41a;
+  border-color: #52c41a;
+}
+.todo-item.done .todo-text {
+  color: #999;
+  text-decoration: line-through;
+}
+.todo-text {
+  font-size: 30rpx;
+  color: #333;
+}
+
+/* 推荐辅食模块 */
+.recommend-section {
+  margin: 30rpx 0;
+}
+.recommend-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.recommend-header .title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+.recommend-header .more {
+  font-size: 28rpx;
+  color: #ff6b81;
+}
+.food-scroll {
+  white-space: nowrap;
+  padding: 10rpx 0;
+}
+.food-card {
+  display: inline-block;
+  background: #fff;
+  border-radius: 24rpx;
+  width: 240rpx;
+  padding: 30rpx 20rpx;
+  margin-right: 20rpx;
+  text-align: center;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
+}
+.food-icon {
+  font-size: 60rpx;
+  margin-bottom: 20rpx;
+}
+.food-name {
+  display: block;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16rpx;
+}
+.age-tag {
+  display: inline-block;
+  background: #ffeef0;
+  color: #ff6b81;
+  font-size: 24rpx;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+}

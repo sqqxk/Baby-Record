@@ -1,144 +1,207 @@
-/* 全局样式 严格遵循UI规范 */
-.container {
+/* 全局样式：支持上下滑动 */
+page {
   background-color: #F9FBF8;
-  padding: 20rpx;
-  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+.container {
+  padding: 0 30rpx;
+  padding-bottom: 120rpx; /* 底部tabbar留空间 */
 }
 
-.card {
-  background: #fff;
+/* 1. 顶部标题栏 */
+.header {
+  background: linear-gradient(135deg, #ffb6c1 0%, #ffe4e1 100%);
+  margin: 0 -30rpx;
+  padding: 40rpx 30rpx;
+  border-radius: 0 0 40rpx 40rpx;
+  margin-bottom: 30rpx;
+}
+.header .title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 2. 宝宝信息卡片 */
+.baby-card {
+  background: linear-gradient(135deg, #ffc1e9 0%, #ffb6c1 100%);
   border-radius: 24rpx;
   padding: 30rpx;
-  margin-bottom: 24rpx;
-}
-
-/* 宝宝管理模块 */
-.baby-card {
-  position: relative;
-}
-.card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24rpx;
+  margin-bottom: 30rpx;
 }
-.title {
+.baby-info {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: #fff;
+  font-size: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.info-text .name {
+  display: block;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+.gender-age {
+  font-size: 28rpx;
+  color: #666;
+}
+.edit-btn {
+  background: rgba(255,255,255,0.8);
+  color: #ff6b81;
+  font-size: 28rpx;
+  padding: 12rpx 24rpx;
+  border-radius: 20rpx;
+}
+
+/* 3. 功能列表 */
+.func-list {
+  background: #fff;
+  border-radius: 24rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
+  margin-bottom: 30rpx;
+}
+.func-item {
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  border-bottom: 1rpx solid #f2f2f2;
+}
+.func-item:last-child {
+  border-bottom: none;
+}
+.func-icon {
+  font-size: 32rpx;
+  margin-right: 20rpx;
+  width: 40rpx;
+  text-align: center;
+}
+.func-text {
+  flex: 1;
+  font-size: 30rpx;
+  color: #333;
+}
+.arrow {
+  font-size: 28rpx;
+  color: #ccc;
+}
+
+/* 4. 多宝宝管理模块 */
+.baby-manage-section {
+  margin-bottom: 40rpx;
+}
+.manage-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.manage-header .title {
   font-size: 32rpx;
   font-weight: bold;
   color: #333;
 }
 .add-btn {
-  font-size: 26rpx;
-  color: #52c41a;
-  background: none;
-  border: none;
-  padding: 0;
+  font-size: 28rpx;
+  color: #ff6b81;
+  background: #ffeef0;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
 }
-.baby-scroll {
-  white-space: nowrap;
+.baby-list {
+  display: flex;
+  gap: 20rpx;
   margin-bottom: 20rpx;
 }
 .baby-item {
-  display: inline-block;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 20rpx;
   text-align: center;
-  margin-right: 24rpx;
-  padding: 16rpx;
-  border-radius: 16rpx;
-  border: 2rpx solid #eee;
-  width: 120rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.05);
 }
 .baby-item.active {
-  border-color: #52c41a;
-  background: #F9FBF8;
+  border: 2rpx solid #ff6b81;
 }
 .baby-avatar {
   font-size: 40rpx;
   margin-bottom: 8rpx;
 }
 .baby-name {
-  font-size: 26rpx;
-  color: #333;
-}
-.baby-month {
-  font-size: 22rpx;
-  color: #999;
-}
-.current-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 20rpx;
-  border-top: 1rpx solid #eee;
-}
-.edit-btn {
-  color: #409eff;
-  background: none;
-  border: none;
-  font-size: 24rpx;
-}
-
-/* 会员中心 */
-.vip-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.vip-left {
-  display: flex;
-  align-items: center;
-  gap: 20rpx;
-}
-.vip-icon {
-  font-size: 40rpx;
-}
-.vip-title {
   display: block;
   font-size: 28rpx;
-  font-weight: bold;
   color: #333;
+  margin-bottom: 4rpx;
 }
-.vip-desc {
+.baby-age {
   font-size: 24rpx;
   color: #999;
 }
-.vip-right {
+.current-baby {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 20rpx;
   display: flex;
   align-items: center;
-  gap: 12rpx;
+  justify-content: space-between;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.05);
 }
-.vip-tag {
-  color: #ff4d4f;
-  font-size: 24rpx;
+.current-baby .label {
+  font-size: 28rpx;
+  color: #999;
 }
-
-/* 菜单通用 */
-.menu-item {
-  display: flex;
-  align-items: center;
-  padding: 28rpx 0;
-  border-bottom: 1rpx solid #f2f2f2;
+.current-name {
   font-size: 28rpx;
   color: #333;
+  flex: 1;
+  margin-left: 10rpx;
 }
-.menu-item:last-child {
-  border-bottom: none;
-}
-.menu-icon {
-  font-size: 32rpx;
-  margin-right: 20rpx;
-  width: 48rpx;
-  text-align: center;
-}
-.arrow {
-  margin-left: auto;
-  color: #999;
-  font-size: 32rpx;
+.edit-manage-btn {
+  font-size: 26rpx;
+  color: #ff6b81;
 }
 
-/* 版本号 */
-.version {
+/* 5. 育儿工具 */
+.tools-section {
+  margin-bottom: 30rpx;
+}
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  display: block;
+}
+.tools-grid {
+  display: flex;
+  justify-content: space-between;
+}
+.tool-item {
+  background: #fff;
+  border-radius: 20rpx;
+  width: 30%;
+  padding: 30rpx 10rpx;
   text-align: center;
-  color: #999;
-  font-size: 24rpx;
-  margin: 40rpx 0;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
+}
+.tool-icon {
+  font-size: 40rpx;
+  margin-bottom: 16rpx;
+}
+.tool-text {
+  font-size: 26rpx;
+  color: #333;
 }

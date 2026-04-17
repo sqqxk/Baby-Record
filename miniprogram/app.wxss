@@ -1,24 +1,40 @@
-/**app.wxss**/
-/* .container {
-  height: 100%;
+/* 全局固定沉浸式标题栏（所有页面共用） */
+.global-title-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* 和截图完全一致的粉色渐变背景 */
+  background: linear-gradient(135deg, #FFB6C1 0%, #FFE4E1 100%);
+  /* 底部圆角，匹配设计 */
+  border-radius: 0 0 40rpx 40rpx;
+  /* 固定在最上层，不会被内容遮挡 */
+  z-index: 999;
+  /* 内容居中 */
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-}  */
-/* 全局默认背景色 - 首选柔雾奶绿白 */
-page {
-  background-color: #F9FBF8;
-  padding: 20rpx;
+  justify-content: center;
+  /* 文字样式：白色、加粗、匹配截图 */
+  color: #ffffff;
+  font-size: 36rpx;
+  font-weight: bold;
   box-sizing: border-box;
 }
 
-/* 卡片统一样式 */
-.card {
-  background-color: #f77c7c;
-  border-radius: 24rpx;
-  padding: 30rpx;
-  margin-bottom: 24rpx;
+/* 全局页面容器：适配标题栏高度，避免内容被挡住 */
+.global-page-container {
+  /* 给标题栏和底部tabBar留空间 */
+  padding-top: calc(var(--nav-bar-height, 88rpx) + 20rpx);
+  padding-bottom: 120rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background: #F9FBF8;
+}
+
+/* 适配刘海屏安全区域 */
+.global-title-bar {
+  padding-top: env(safe-area-inset-top);
+}
+.global-page-container {
+  padding-top: calc(env(safe-area-inset-top) + 88rpx + 20rpx);
 }
